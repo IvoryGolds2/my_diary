@@ -1,10 +1,21 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import DiaryTemplate from './components/DiaryTemplate';
+import MainPage from './component/MainPage';
+import TodoWriterPage from './component/TodoWriterPage';
+
+
+
+
 
 function App() {
+
   return (
-    <DiaryTemplate />
+    <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<MainPage/>} />
+          <Route path='/write' element={<TodoWriterPage />} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 
