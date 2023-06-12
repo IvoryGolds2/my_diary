@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const TodoWriterPageWrapper = styled.div`
+
+const TodoWriterPageWrapper = styled.form`
     width: 512px;
   margin: 0 auto;
   margin-top: 6rem;
@@ -47,20 +48,49 @@ const TodoWriterPageWrapper = styled.div`
   }
 `
 
-function TodoWriterPage(props) {
+function TodoWriterPage({onWriterPage}) {
+  
   const navigate = useNavigate();
+    const [date, setDate] = useState('');
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    // const [memo, setMemo] = useState({
+    //   date: '',
+    //   title: '',
+    //   content: ''
+    // });
+
+    const handleChange1 = (e) => {
+      setDate(e.target.value);
+    }; 
+    const handleChange2 = (e) => {
+      setTitle(e.target.value);
+
+    }; 
+    const handleChange3 = (e) => {
+      setContent(e.target.value);
+    }; 
+
+    const handleSubmit = (e) => {
+      onWriterPage(date, title, content);
+      setDate('');
+      setTitle('');
+      setContent('');
+      e.preventDefault();
+    };
 
   return (
-    <TodoWriterPageWrapper>
+    
+    <TodoWriterPageWrapper onSubmit={handleSubmit}>
           <div className='app-title'>My Todo List</div>
           <div className='list'>
-            <input className='date' type="date" />
-            <input className='title' type="text" />
-            <input className='content' type="text" />
+            <input className='date' type="date" value={date} onChange={handleChange1}/>
+            <input className='title' type="text" value={title} onChange={handleChange2} placeholder='제목을 입력하세요'/>
+            <input className='content' type="text" value={content} onChange={handleChange3} placeholder='내용을 입력하세요' />
           </div>
           <button 
           className='btn' 
-          type='button'
+          type='submit'
           onClick={() => {
             navigate("/");
           }}

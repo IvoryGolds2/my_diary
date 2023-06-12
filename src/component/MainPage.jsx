@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import TodoList from './TodoList';
 import { useNavigate } from 'react-router-dom';
-import TodoWriterPage from './TodoWriterPage';
+import TodoList from './TodoList';
+
 
 const MainPageWrapper = styled.div`
   width: 512px;
@@ -35,21 +35,22 @@ const MainPageWrapper = styled.div`
 
 function MainPage(props) {
   const navigate = useNavigate();
+
   return (
     <>
-        <MainPageWrapper>
+      <MainPageWrapper>
         <div className='app-title'>My Todo List</div>
-        <div className='list'><TodoList /></div>
+        <div className='list'>{props.children}</div>
         <button 
-        className='btn' 
-        type='button'
-        onClick={() => {
-          navigate("/write");
-        }}
+          className='btn' 
+          type='button'
+          onClick={() => {
+            navigate("/write");
+          }}
         >
           작성하기
         </button>
-        </MainPageWrapper>
+      </MainPageWrapper>
     </>
   );
 }
