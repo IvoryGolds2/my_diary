@@ -11,9 +11,11 @@ const TodoListWrapper = styled.div`
 function TodoList(props) {
   const { todos, onRemove, onToggle } = props;
   console.log(todos);
+  
+  
   return (
     <TodoListWrapper>
-      {todos.map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle} />)}
+      {todos.sort((a, b) => new Date(a.date) - new Date(b.date)).map(todo => <TodoItem key={todo.id} todo={todo} onRemove={onRemove} onToggle={onToggle} />) }
     </TodoListWrapper>
   );
 }

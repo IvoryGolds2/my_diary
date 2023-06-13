@@ -5,6 +5,7 @@ import TodoWriterPage from './component/TodoWriterPage';
 import TodoItem from './component/TodoItem';
 import TodoList from './component/TodoList';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 
 
 
@@ -13,16 +14,16 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 function App() {
   const [todos, setTodos] = useState([]);
 
-  // useEffect(() => {
-  //   const dbTodos = JSON.parse(localStorage.getItem('todos')) || [];
-  //   setTodos(dbTodos);
-  // }, []);
+  useEffect(() => {
+    const dbTodos = JSON.parse(localStorage.getItem('todos')) || [];
+    setTodos(dbTodos);
+  }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem('todos', JSON.stringify(todos));
-  // }, [todos]);
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
-  const nextId = useRef(4);
+  const nextId = useRef(1);
 
   const handleInsert = useCallback((date, title, content) => {
     const todo = {
@@ -44,19 +45,25 @@ function App() {
       todo.id === id ? { ...todo, checked: !todo.checked } : todo
     ));
   }, [])
-
   // console.log(todos);
+  // console.log(todos.sort((a, b) => new Date(a.date) - new Date(b.date)));
+  // 테마 영역
+
+
+
   return (
-    <BrowserRouter>
-        <Routes>
-          <Route path='/' element={
-            <MainPage>
-              <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle} />
-            </MainPage>} 
-          />
-          <Route path='/write' element={<TodoWriterPage onWriterPage={handleInsert}/>} />
-        </Routes>
-    </BrowserRouter>
+
+      <BrowserRouter>
+          <Routes>
+            <Route path='/' element={
+              <MainPage>
+                <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle} />
+              </MainPage>} 
+            />
+            <Route path='/write' element={<TodoWriterPage onWriterPage={handleInsert}/>} />
+          </Routes>
+      </BrowserRouter>
+
   );
 }
 

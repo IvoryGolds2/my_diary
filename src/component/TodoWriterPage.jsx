@@ -27,25 +27,32 @@ const TodoWriterPageWrapper = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .btn {
     width: 512px;
     height: 50px;
+    background-color: white;
+    border: 0;
+    cursor: pointer;
   }
   .date {
     margin-top: 10px;
     width: 450px;
+    height: 30px;
+    cursor: pointer;
   }
   .title {
     margin-top: 5px;
     width: 450px;
+    height: 400px;
   }
-  .content {
+  /* .content {
     margin-top: 15px;
     width: 450px;
     height: 400px;
-  }
+  } */
 `
 
 function TodoWriterPage({onWriterPage}) {
@@ -67,9 +74,9 @@ function TodoWriterPage({onWriterPage}) {
       setTitle(e.target.value);
 
     }; 
-    const handleChange3 = (e) => {
-      setContent(e.target.value);
-    }; 
+    // const handleChange3 = (e) => {
+    //   setContent(e.target.value);
+    // }; 
 
     const handleSubmit = (e) => {
       onWriterPage(date, title, content);
@@ -85,8 +92,8 @@ function TodoWriterPage({onWriterPage}) {
           <div className='app-title'>My Todo List</div>
           <div className='list'>
             <input className='date' type="date" value={date} onChange={handleChange1}/>
-            <input className='title' type="text" value={title} onChange={handleChange2} placeholder='제목을 입력하세요'/>
-            <input className='content' type="text" value={content} onChange={handleChange3} placeholder='내용을 입력하세요' />
+            <input className='title' type="text" value={title} onChange={handleChange2} placeholder='내용을 입력하세요'/>
+            {/* <input className='content' type="text" value={content} onChange={handleChange3} placeholder='내용을 입력하세요' /> */}
           </div>
           <button 
           className='btn' 
