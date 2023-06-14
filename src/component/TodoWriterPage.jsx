@@ -79,11 +79,18 @@ function TodoWriterPage({onWriterPage}) {
     // }; 
 
     const handleSubmit = (e) => {
+      e.preventDefault();
       onWriterPage(date, title, content);
+      
+      if (title.length < 1){
+        alert('다시 입력해 주세요')
+        return;
+      }
+      
+      navigate("/");
       setDate('');
       setTitle('');
       setContent('');
-      e.preventDefault();
     };
 
   return (
@@ -92,15 +99,14 @@ function TodoWriterPage({onWriterPage}) {
           <div className='app-title'>My Todo List</div>
           <div className='list'>
             <input className='date' type="date" value={date} onChange={handleChange1}/>
-            <input className='title' type="text" value={title} onChange={handleChange2} placeholder='내용을 입력하세요'/>
+            <input className='title' type="text" value={title} onChange={handleChange2} placeholder='내용을 입력하세요'
+            
+            />
             {/* <input className='content' type="text" value={content} onChange={handleChange3} placeholder='내용을 입력하세요' /> */}
           </div>
           <button 
           className='btn' 
           type='submit'
-          onClick={() => {
-            navigate("/");
-          }}
           >
             등록
           </button>
