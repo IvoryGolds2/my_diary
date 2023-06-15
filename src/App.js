@@ -106,12 +106,15 @@ function App() {
       todo.id === id ? { ...todo, checked: !todo.checked } : todo
     ));
   }, [])
+
   const todolist = todos.filter((truetodos) => {
     return !truetodos.checked
   });  
+
   const complete = todos.filter((truetodos) => {
     return truetodos.checked
   });
+
   console.log(todolist.length);
 
   return (

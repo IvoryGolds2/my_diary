@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { TiHeartFullOutline, TiHeartOutline, TiDelete } from "react-icons/ti";
+import { TiHeartFullOutline, TiHeartOutline, TiDelete, TiPencil, TiTickOutline, TiTick, TiTimes, TiTimesOutline } from "react-icons/ti";
 
 const TodoItemWrapper = styled.div`
   padding: 0.3rem;
@@ -20,7 +20,7 @@ const TodoItemWrapper = styled.div`
     font-size: 25px;
     color: #fc7aa1;
     cursor: pointer;
-    margin: 0 10px 5px 10px ;
+    margin: 1px ;
   }
 
   svg:hover {
@@ -63,14 +63,19 @@ function TodoItem(props) {
       <Checkbox checked={checked}
         onClick={() => {onToggle(id)}}
       >
-        {checked? <TiHeartFullOutline /> : <TiHeartOutline />}
+        {checked? <TiTick /> : <TiTickOutline />}
       </Checkbox>
         <div className='date'>{date}</div>
         <div className='text'>{title}</div>
+        {/* <div className='correct'
+        // onClick={}
+        >
+          <TiPencil />
+        </div> */}
         <div className='remove'
           onClick={() => {onRemove(id);}}
           >
-          <TiDelete />
+          {checked? <TiTimes /> : <TiTimesOutline />}
         </div>
     </TodoItemWrapper>
   );
