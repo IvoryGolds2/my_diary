@@ -6,38 +6,44 @@ const TodoItemWrapper = styled.div`
   padding: 0.3rem;
   display: flex;
   align-items: center;
+
   .date{
     margin-right: 10px;
   }
+
   .remove {
     display: flex;
     align-items: center;
   }
+
   svg {
     font-size: 25px;
-    color: red;
+    color: #fc7aa1;
     cursor: pointer;
-    margin: 5px;
+    margin: 0 10px 5px 10px ;
   }
+
   svg:hover {
-    color: #ff8e8e;
+    color: #ffb1c8;
     transition: .4s;
   }
+
   .date {
     ${props => props.checked &&
       css`
-      color: #929292;
+    color: #a987c9;
       text-decoration: line-through;
-      text-decoration-color: red;
+      text-decoration-color: #fc7aa1;
       `
     }
   }
+
   .text {
     ${props => props.checked &&
       css`
-      color: #929292;
+    color: #a987c9;
       text-decoration: line-through;
-      text-decoration-color: red;
+      text-decoration-color: #fc7aa1;
       `
     }
   }
@@ -49,12 +55,9 @@ const Checkbox = styled.div`
   align-items: center;
   `;
 
-
-
-
-
 function TodoItem(props) {
   const {onToggle, onRemove, todo: { date, id, title, checked } } = props; 
+  
   return (
     <TodoItemWrapper checked={checked}>
       <Checkbox checked={checked}
@@ -69,9 +72,6 @@ function TodoItem(props) {
           >
           <TiDelete />
         </div>
-
-
-
     </TodoItemWrapper>
   );
 }
