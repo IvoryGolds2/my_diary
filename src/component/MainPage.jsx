@@ -8,6 +8,15 @@ const MainPageWrapper = styled.div`
   margin: 0 auto;
   margin-top: 6rem;
   overflow: hidden;
+  border-radius: 20px;
+  border: 5px solid  #FFF7A4;
+  
+  .app-title {
+  border-bottom: 5px solid  #FFF7A4;
+  }
+  .btn {
+  border-top: 5px solid  #FFF7A4;
+  }
 `
 
 function MainPage(props) {

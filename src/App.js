@@ -14,7 +14,7 @@ const GloalStyle = createGlobalStyle`
   }
 
   .designed-scroll::-webkit-scrollbar-thumb {
-    background-color: #FFF7A4;
+    background-color: #8e49cf5c;
     border-radius: 2.5px;
   }
 
