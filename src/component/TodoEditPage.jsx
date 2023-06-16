@@ -40,7 +40,14 @@ const TodoWriterPageWrapper = styled.form`
 function TodoEditPage({todos, onEditPage}) {
   
   const { editId } = useParams();
-  console.log(editId);
+
+
+  const target = todos.find((todo) => {
+    return editId === todo.id
+  });
+  console.log(target);
+  
+
 
   const navigate = useNavigate();
   const [date, setDate] = useState('');

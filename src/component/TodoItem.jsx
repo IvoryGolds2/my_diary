@@ -7,22 +7,27 @@ const TodoItemWrapper = styled.div`
   padding: 0.3rem;
   display: flex;
   align-items: center;
+  position: relative;
+  height: auto;
 
   .date{
     margin-right: 10px;
   }
 
   .remove {
-    align-items: center;
+    svg {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+    }
   }
   
   .edit {
-    align-items: center;
-
     svg {
       font-size: 20px;
-      margin-left: 10px;
-      margin-right: -2px;
+      position: absolute;
+      right: 35px;
+      bottom: 7px;
     }
   }
 
@@ -39,6 +44,8 @@ const TodoItemWrapper = styled.div`
   }
 
   .date {
+    position: absolute;
+    right: 55px;
     ${props => props.checked &&
       css`
     color: #a987c9;
@@ -50,6 +57,7 @@ const TodoItemWrapper = styled.div`
 
 
   .text {
+    width: 300px
     ${props => props.checked &&
       css`
     color: #a987c9;
@@ -84,7 +92,7 @@ function TodoItem(props) {
         <div className='text'>{title}</div>
         <div className='edit'
           onClick={() => {
-            navigate("/edit/:editId");
+            navigate(`/edit/${id}`);
           }}
         >
           <TiPencil />
