@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { TiHeartFullOutline, TiHeartOutline, TiDelete, TiPencil, TiTickOutline, TiTick, TiTimes, TiTimesOutline } from "react-icons/ti";
+import { useNavigate } from 'react-router-dom';
 
 const TodoItemWrapper = styled.div`
   padding: 0.3rem;
@@ -12,8 +13,17 @@ const TodoItemWrapper = styled.div`
   }
 
   .remove {
-    display: flex;
     align-items: center;
+  }
+  
+  .edit {
+    align-items: center;
+
+    svg {
+      font-size: 20px;
+      margin-left: 10px;
+      margin-right: -2px;
+    }
   }
 
   svg {
@@ -38,6 +48,7 @@ const TodoItemWrapper = styled.div`
     }
   }
 
+
   .text {
     ${props => props.checked &&
       css`
@@ -46,6 +57,7 @@ const TodoItemWrapper = styled.div`
       text-decoration-color: #fc7aa1;
       `
     }
+
   }
 `;
 
@@ -57,6 +69,9 @@ const Checkbox = styled.div`
 
 function TodoItem(props) {
   const {onToggle, onRemove, todo: { date, id, title, checked } } = props; 
+  const navigate = useNavigate();
+
+  
   
   return (
     <TodoItemWrapper checked={checked}>
@@ -67,11 +82,13 @@ function TodoItem(props) {
       </Checkbox>
         <div className='date'>{date}</div>
         <div className='text'>{title}</div>
-        {/* <div className='correct'
-        // onClick={}
+        <div className='edit'
+          onClick={() => {
+            navigate("/edit/:editId");
+          }}
         >
           <TiPencil />
-        </div> */}
+        </div>
         <div className='remove'
           onClick={() => {onRemove(id);}}
           >

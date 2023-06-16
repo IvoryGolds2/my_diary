@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import TodoList from './TodoList';
 
 const MainPageWrapper = styled.div`
@@ -21,7 +21,8 @@ const MainPageWrapper = styled.div`
 
 function MainPage(props) {
   const navigate = useNavigate();
-  
+  const { editId } = useParams();
+  console.log(useParams());
   return (
     <>
       <MainPageWrapper>

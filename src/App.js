@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import './App.css';
 import MainPage from './component/MainPage';
 import TodoWriterPage from './component/TodoWriterPage';
@@ -7,6 +7,8 @@ import TodoList from './component/TodoList';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from "styled-components";
+import uuid from 'react-uuid';
+import TodoEditPage from './component/TodoEditPage';
 
 const GloalStyle = createGlobalStyle`
   .designed-scroll::-webkit-scrollbar {
@@ -84,17 +86,13 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const nextId = useRef(1);
-
-  const handleInsert = useCallback((date, title, content) => {
+  const handleInsert = useCallback((date, title) => {
     const todo = {
-      id:nextId.current,
+      id: uuid(),
       date,
       title,
-      content,
     }
     setTodos(todos => todos.concat(todo));
-    nextId.current += 1;
   },[]);
 
   const handleRemove = useCallback((id) =>{
@@ -115,7 +113,8 @@ function App() {
     return truetodos.checked
   });
 
-  console.log(todolist.length);
+
+
 
   return (
     <AppWrapper>
@@ -132,7 +131,9 @@ function App() {
                 </div>
               </MainPage>} 
             />
-            <Route path='/write' element={<TodoWriterPage onWriterPage={handleInsert}/>} />
+            <Route path='/edit/:editId' element={<TodoEditPage onEditPage={handleInsert} todos={todos}/>} />
+            <Route path='/write' element={<TodoWriterPage onWriterPage={handleInsert} />}
+            />
           </Routes>
       </BrowserRouter>
       </AppWrapper>
