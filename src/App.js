@@ -38,7 +38,7 @@ const GloalStyle = createGlobalStyle`
     color: #8F49CF;
     height: 500px;
     background-color: #B4F7ED;
-    text-align: center;
+    /* text-align: center; */
     justify-content: center;
     align-items: center;
   }
