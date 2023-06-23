@@ -13,8 +13,13 @@ const TodoWriterPageWrapper = styled.form`
   .app-title {
   border-bottom: 5px solid  #FFF7A4;
   }
+
   .btn {
   border-top: 5px solid  #FFF7A4;
+  }
+
+  .list {
+    text-align: center;
   }
 
   .date {
@@ -25,7 +30,7 @@ const TodoWriterPageWrapper = styled.form`
     opacity: .5;
     color: #450085;
     border: none;
-  }
+    }
 
   .title {
     margin-top: 15px;
@@ -41,13 +46,13 @@ function TodoEditPage({todos, onEditPage}) {
   
   const { editId } = useParams();
 
-
   const target = todos.find((todo) => {
     return editId === todo.id
   });
-  console.log(target);
+  console.log(target.title);
   
-
+  const editDate = target.date
+  const editTitle = target.title
 
   const navigate = useNavigate();
   const [date, setDate] = useState('');
@@ -79,15 +84,10 @@ function TodoEditPage({todos, onEditPage}) {
     <TodoWriterPageWrapper onSubmit={handleSubmit}>
       <div className='app-title'>My Todo List</div>
       <div className='list'>
-        <input className='date' type="date" value={date} onChange={handleChange1}>
-          
+        <input className='date' type="date" defaultValue={editDate} onChange={handleChange1}>
         </input>
-
-        <input className='title' type="text" value={title} onChange={handleChange2}>
-          
+        <input className='title' type="text" defaultValue={editTitle} onChange={handleChange2}>
         </input>    
-
-
       </div>
       <button 
       className='btn' 

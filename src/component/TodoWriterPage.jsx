@@ -16,6 +16,11 @@ const TodoWriterPageWrapper = styled.form`
   .btn {
   border-top: 5px solid  #FFF7A4;
   }
+
+  .list {
+    text-align: center;
+  }
+  
   .date {
     margin-top: 20px;
     width: 450px;
